@@ -1,4 +1,70 @@
+/* 
+ * SocketServer.java
+ * サーバークラス．EV3からの通信をPC側で受け取る
+ */
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class SocketServer {
+	static int port= 10000; //サーバ側の待受ポート番号
+	static Socket socket; //ソケット
+	static DataOutputStream dos; //データ出力
+	static DataInputStream dis; //データ入力
+    static InputStream Is; //入力
+    static OutputStream Os; //出力
+    static ServerSocket ss; //サーバソケット
 
+    static double velocity; //速度
+    static double yaw; //ヨー角
+    
+    //サーバーのメイン
+	public static void main(String arg[]) {
+		try {
+			System.out.println("Server Starting...");
+			ss = new ServerSocket(port);
+			socket = ss.accept(); //クライアントからの通信開始要求が来るまで待機
+			System.out.println("IP:"+socket.getInetAddress()); //接続したIPアドレスを表示
+			Is = socket.getInputStream();
+			dis = new DataInputStream(Is);
+			Os =socket.getOutputStream();
+			dos = new DataOutputStream(Os);
+			System.out.println("Socket Connected!");
+			
+			//ここでファイルを読み込む
+			readFile(); //ファイルを読み込むメソッドを呼び出す
+			
+			//ファイルから読み込んだデータをクライアントに送信する
+			dos.writeDouble(velocity);
+			
+			//dos.writeInt(6);;
+		}catch(Exception e) {
+			System.out.println("Exception: " + e);
+		}
+	}
+	
+	//ファイル読み込み用のメソッド
+	public static void readFile(){
+		try{
+			System.out.println("Reading File..."); //ファイルの読み込みであることを表示
+			String file_name = "test.dat";
+			FileReader fr = new FileReader(file_name);
+			StreamTokenizer st = new StreamTokenizer(fr);
+			st.nextToken();
+			velocity = st.nval;
+			st.nextToken();
+			yaw = st.nval;
+			System.out.println("v = " + velocity + " Yaw = " + yaw);
+			fr.close();
+		}catch(IOException e){
+			System.out.println("Exception: " + e);
+		}
+	}
 }

@@ -1,11 +1,7 @@
 /*
-  TimerTaskを二つ動作させる例
-  以下のようにすると、t1, t2 が並列で動作する
-  
-  schedule は割り込み間隔が次第に遅延していく
-  scheduleAtFixedRate は当初の割り込み間隔を守ろうとする
-  当然後者を利用しましょう。
-*/
+ * EV3ControlServer.java
+ * EV3を制御するクライアント(PC)側のメインクラス．
+ */
 import java.util.Timer;
 
 public class EV3ControlServer{
