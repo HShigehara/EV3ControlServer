@@ -27,8 +27,7 @@ public class SocketServer {
     static double yaw; //ヨー角
     
     //メソッド
-    //サーバーのメイン
-	public static void main(String arg[]) {
+	public void ConnectServer(String arg[]) {
 		try {
 			System.out.println("Server Starting...");
 			ss = new ServerSocket(port);
@@ -45,15 +44,13 @@ public class SocketServer {
 			
 			//ファイルから読み込んだデータをクライアントに送信する
 			dos.writeDouble(velocity);
-			
-			//dos.writeInt(6);;
 		}catch(Exception e) {
 			System.out.println("Exception: " + e);
 		}
 	}
 	
 	//ファイル読み込み用のメソッド
-	public static void readFile(){
+	public void readFile(){
 		try{
 			System.out.println("Reading File..."); //ファイルの読み込みであることを表示
 			String file_name = "test.dat";
