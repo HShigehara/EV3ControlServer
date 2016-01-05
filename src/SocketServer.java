@@ -14,17 +14,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SocketServer {
-	static int port= 10000; //サーバ側の待受ポート番号
+	//変数
+	static int port= 10000; //サーバー側の待受ポート番号
 	static Socket socket; //ソケット
-	static DataOutputStream dos; //データ出力
-	static DataInputStream dis; //データ入力
-    static InputStream Is; //入力
-    static OutputStream Os; //出力
-    static ServerSocket ss; //サーバソケット
+	static DataOutputStream dos; //データ出力ストリーム
+	static DataInputStream dis; //データ入力ストリーム
+    static InputStream Is; //入力ストリーム
+    static OutputStream Os; //出力ストリーム
+    static ServerSocket ss; //サーバーソケット
 
     static double velocity; //速度
     static double yaw; //ヨー角
     
+    //メソッド
     //サーバーのメイン
 	public static void main(String arg[]) {
 		try {
