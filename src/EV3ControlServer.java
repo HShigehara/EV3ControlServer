@@ -16,10 +16,10 @@ public class EV3ControlServer{
     	ss.MakeConnection(null);
     	
     	//(~, 開始, 増分)
-    	timer.scheduleAtFixedRate(new RunServer("Time Scheduling Server"), 1000, 5000); //scheduleAtFixdRateメソッド利用時
+    	timer.scheduleAtFixedRate(new RunServer("Time Scheduling Server"), 1000, 100); //scheduleAtFixdRateメソッド利用時
     	
     	try{ //通常時
-    		Thread.sleep(5000); //5000[ms]だけ待って動作を開始
+    		Thread.sleep(100); //5000[ms]だけ待って動作を開始
     	} catch(InterruptedException e){ //例外発生時
     		System.out.println("error : " + e); //エラーを表示
     	}
