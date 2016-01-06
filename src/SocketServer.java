@@ -37,18 +37,12 @@ public class SocketServer {
 			dos = new DataOutputStream(Os);
 			System.out.println("Socket Connected!");
 			
-			//ファイルを読み込む
-			//rf = new ReadFile(); //インスタンスを生成
-			//rf.ReadVelocityYawFile(null); //ファイルを読み込むメソッドを呼び出す
-			//System.out.println("v = " + rf.velocity + " yaw = " + rf.yaw); //確認用に表示
-			
 			//ファイルから読み込んだデータをクライアントに送信する
 			dos.writeDouble(velocity); //速度を送信
 			dos.flush();
-			dos.writeDouble(yaw);
+			dos.writeDouble(yaw); //ヨー角を送信
 			dos.flush();
 			dos.close();
-			//dos.writeDouble(rf.yaw); //ヨー角を送信
 			
 		}catch(Exception e) {
 			System.out.println("Exception: " + e);
