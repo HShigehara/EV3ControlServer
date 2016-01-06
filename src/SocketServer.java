@@ -3,10 +3,10 @@
  * サーバークラス．EV3からの通信をPC側で受け取る
  */
 import java.io.*;
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -53,7 +53,7 @@ public class SocketServer {
 	public void readFile(){
 		try{
 			System.out.println("Reading File..."); //ファイルの読み込みであることを表示
-			String file_name = "test.dat";
+			String file_name = "vyaw.dat";
 			FileReader fr = new FileReader(file_name);
 			StreamTokenizer st = new StreamTokenizer(fr);
 			st.nextToken();
