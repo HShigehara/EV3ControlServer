@@ -22,10 +22,10 @@ public class SocketServer {
     static OutputStream Os; //出力ストリーム
     static ServerSocket ss; //サーバーソケット
     
-	static ReadFile rf; //ファイル読み込みクラス
+	//static ReadFile rf; //ファイル読み込みクラス
 
 	//メソッド
-	public void ConnectServer(String arg[]) {
+	public void ConnectServer(double velocity, double yaw) {
 		try {
 			System.out.println("Server Starting...");
 			ss = new ServerSocket(port);
@@ -38,12 +38,16 @@ public class SocketServer {
 			System.out.println("Socket Connected!");
 			
 			//ファイルを読み込む
-			rf = new ReadFile(); //インスタンスを生成
-			rf.ReadVelocityYawFile(null); //ファイルを読み込むメソッドを呼び出す
-			System.out.println("v = " + rf.velocity + " yaw = " + rf.yaw); //確認用に表示
+			//rf = new ReadFile(); //インスタンスを生成
+			//rf.ReadVelocityYawFile(null); //ファイルを読み込むメソッドを呼び出す
+			//System.out.println("v = " + rf.velocity + " yaw = " + rf.yaw); //確認用に表示
 			
 			//ファイルから読み込んだデータをクライアントに送信する
-			dos.writeDouble(rf.velocity); //速度を送信
+			dos.writeDouble(velocity); //速度を送信
+			dos.flush();
+			dos.writeDouble(yaw);
+			dos.flush();
+			dos.close();
 			//dos.writeDouble(rf.yaw); //ヨー角を送信
 			
 		}catch(Exception e) {
