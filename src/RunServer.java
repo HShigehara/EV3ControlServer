@@ -34,7 +34,7 @@ public class RunServer extends TimerTask{
 	System.out.println(rf.velocity + " run " + rf.yaw);
 
 	//ソケット通信
-	ss.ConnectServer(rf.velocity, rf.yaw); //ソケット接続
+	ss.SendData(rf.velocity, rf.yaw); //ソケット接続
 	
     }
 }

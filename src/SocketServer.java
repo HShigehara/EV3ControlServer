@@ -25,24 +25,32 @@ public class SocketServer {
 	//static ReadFile rf; //ファイル読み込みクラス
 
 	//メソッド
-	public void ConnectServer(double velocity, double yaw) {
-		try {
-			System.out.println("Server Starting...");
+    public void MakeConnection(String args[]){
+    	try{
 			ss = new ServerSocket(port);
 			socket = ss.accept(); //クライアントからの通信開始要求が来るまで待機
-			System.out.println("IP:"+socket.getInetAddress()); //接続したIPアドレスを表示
+			//System.out.println("IP:"+socket.getInetAddress()); //接続したIPアドレスを表示
 			Is = socket.getInputStream();
 			dis = new DataInputStream(Is);
 			Os =socket.getOutputStream();
 			dos = new DataOutputStream(Os);
 			System.out.println("Socket Connected!");
+    	}catch(Exception e){
+    		System.out.println(e);
+    	}
+    }
+    
+	public void SendData(double velocity, double yaw) {
+		try {
+			System.out.println("Server Starting...");
+
 			
 			//ファイルから読み込んだデータをクライアントに送信する
 			dos.writeDouble(velocity); //速度を送信
 			dos.flush();
 			dos.writeDouble(yaw); //ヨー角を送信
 			dos.flush();
-			dos.close();
+			//dos.close();
 			
 		}catch(Exception e) {
 			System.out.println("Exception: " + e);
