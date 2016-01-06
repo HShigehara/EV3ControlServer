@@ -2,12 +2,11 @@
  * SocketServer.java
  * サーバークラス．EV3からの通信をPC側で受け取る
  */
-import java.io.*;
 //import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 //import java.io.File;
-import java.io.IOException;
+//import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
@@ -22,11 +21,10 @@ public class SocketServer {
     static InputStream Is; //入力ストリーム
     static OutputStream Os; //出力ストリーム
     static ServerSocket ss; //サーバーソケット
-
-    static double velocity; //速度
-    static double yaw; //ヨー角
     
-    //メソッド
+	static ReadFile rf; //ファイル読み込みクラス
+
+	//メソッド
 	public void ConnectServer(String arg[]) {
 		try {
 			System.out.println("Server Starting...");
@@ -39,31 +37,18 @@ public class SocketServer {
 			dos = new DataOutputStream(Os);
 			System.out.println("Socket Connected!");
 			
-			//ここでファイルを読み込む
-			readFile(); //ファイルを読み込むメソッドを呼び出す
+			//ファイルを読み込む
+			rf = new ReadFile(); //インスタンスを生成
+			rf.ReadVelocityYawFile(null); //ファイルを読み込むメソッドを呼び出す
+			System.out.println("v = " + rf.velocity + " yaw = " + rf.yaw); //確認用に表示
 			
 			//ファイルから読み込んだデータをクライアントに送信する
-			dos.writeDouble(velocity);
+			dos.writeDouble(rf.velocity); //速度を送信
+			//dos.writeDouble(rf.yaw); //ヨー角を送信
+			
 		}catch(Exception e) {
 			System.out.println("Exception: " + e);
 		}
 	}
-	
-	//ファイル読み込み用のメソッド
-	public void readFile(){
-		try{
-			System.out.println("Reading File..."); //ファイルの読み込みであることを表示
-			String file_name = "vyaw.dat";
-			FileReader fr = new FileReader(file_name);
-			StreamTokenizer st = new StreamTokenizer(fr);
-			st.nextToken();
-			velocity = st.nval;
-			st.nextToken();
-			yaw = st.nval;
-			System.out.println("v = " + velocity + " Yaw = " + yaw);
-			fr.close();
-		}catch(IOException e){
-			System.out.println("Exception: " + e);
-		}
-	}
+
 }

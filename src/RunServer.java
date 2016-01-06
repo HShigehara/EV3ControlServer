@@ -12,6 +12,10 @@ public class RunServer extends TimerTask{
     private long timeStart;
     private String id;
 
+    //インスタンス生成
+	static SocketServer ss = new SocketServer(); //インスタンスを生成
+	//static ReadFile rf = new ReadFile(); //staticで宣言しておくことで，他のクラスでも同じ値を取得することができる
+	
     //メソッド
     //コンストラクタ
     RunServer(String arg){
@@ -25,7 +29,12 @@ public class RunServer extends TimerTask{
 	System.out.println(id +  " : " + TimeUnit.MILLISECONDS.convert(timeNow, TimeUnit.NANOSECONDS));
 	
 	//ソケット通信
-	SocketServer socket_server = new SocketServer(); //インスタンスを生成
-	socket_server.ConnectServer(null); //ソケット接続
+	ss.ConnectServer(null); //ソケット接続
+
+	//ファイルを読み込む
+	//rf.ReadVelocityYawFile(null);
+	//System.out.println(rf.velocity + " run " + rf.yaw);
+
+	
     }
 }

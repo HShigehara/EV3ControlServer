@@ -12,7 +12,6 @@ public class EV3ControlServer{
 	//Timer t1 = new Timer(); //タイマーt1のインスタンスを生成
 	Timer t2 = new Timer(); //タイマーt2のインスタンスを生成
 
-	int flag = 0;
 	
 	//t1.schedule(new TimeSchedulingServer("First"), 1000, 100); //scheduleメソッド利用時
 	//(~, 開始, 増分)
