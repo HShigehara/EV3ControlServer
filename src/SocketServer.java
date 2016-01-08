@@ -50,6 +50,7 @@ public class SocketServer {
 			dos.flush();
 		}catch(Exception e) {
 			System.out.println("IOException: " + e);
+			System.exit(-1);
 		}
 	}
 
