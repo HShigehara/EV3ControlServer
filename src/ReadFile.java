@@ -20,11 +20,12 @@ public class ReadFile {
     			String file_name = "vyaw.dat";
     			FileReader fr = new FileReader(file_name);
     			StreamTokenizer st = new StreamTokenizer(fr);
+    			//‘¬“x‚ğæ“¾(mm/frame)
     			st.nextToken();
     			velocity = st.nval;
+    			//ƒˆ[Šp‚ğæ“¾(deg)
     			st.nextToken();
     			yaw = st.nval;
-    			//System.out.println("v = " + velocity + " Yaw = " + yaw);
     			fr.close();
     		}catch(IOException e){
     			System.out.println("Exception: " + e);

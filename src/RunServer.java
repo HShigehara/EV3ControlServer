@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 public class RunServer extends TimerTask{
 	//変数
     private long timeStart;
-    private String id;
 
     //インスタンス生成
 	static SocketServer ss = new SocketServer(); //インスタンスを生成
@@ -18,20 +17,18 @@ public class RunServer extends TimerTask{
 	
     //メソッド
     //コンストラクタ
-    RunServer(String arg){
+    RunServer(){
 	timeStart = System.nanoTime();
-	id = arg;
     }
 
     //run()．処理の流れをここに書く
     public void run(){
 	long timeNow = System.nanoTime() - timeStart;
-	System.out.println(id +  " : " + TimeUnit.MILLISECONDS.convert(timeNow, TimeUnit.NANOSECONDS));
+	System.out.println("Time : " + TimeUnit.MILLISECONDS.convert(timeNow, TimeUnit.NANOSECONDS));
 	
-
 	//ファイルを読み込む
 	rf.ReadVelocityYawFile(null);
-	System.out.println(rf.velocity + " run " + rf.yaw);
+	System.out.println("Velocity => " + rf.velocity + ", Yaw => " + rf.yaw);
 
 	//ソケット通信
 	ss.SendData(rf.velocity, rf.yaw); //ソケット接続

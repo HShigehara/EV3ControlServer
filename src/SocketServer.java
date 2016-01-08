@@ -22,14 +22,14 @@ public class SocketServer {
     static OutputStream Os; //出力ストリーム
     static ServerSocket ss; //サーバーソケット
     
-	//static ReadFile rf; //ファイル読み込みクラス
-
 	//メソッド
+    //コネクションをはるメソッド
     public void MakeConnection(String args[]){
     	try{
+			System.out.println("Starting Server...");
 			ss = new ServerSocket(port);
 			socket = ss.accept(); //クライアントからの通信開始要求が来るまで待機
-			//System.out.println("IP:"+socket.getInetAddress()); //接続したIPアドレスを表示
+			System.out.println("IP:"+socket.getInetAddress()); //接続したIPアドレスを表示
 			Is = socket.getInputStream();
 			dis = new DataInputStream(Is);
 			Os =socket.getOutputStream();
@@ -40,20 +40,16 @@ public class SocketServer {
     	}
     }
     
+    //データを送信するメソッド
 	public void SendData(double velocity, double yaw) {
 		try {
-			System.out.println("Server Starting...");
-
-			
 			//ファイルから読み込んだデータをクライアントに送信する
 			dos.writeDouble(velocity); //速度を送信
 			dos.flush();
 			dos.writeDouble(yaw); //ヨー角を送信
 			dos.flush();
-			//dos.close();
-			
 		}catch(Exception e) {
-			System.out.println("Exception: " + e);
+			System.out.println("IOException: " + e);
 		}
 	}
 
