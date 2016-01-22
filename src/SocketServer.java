@@ -1,29 +1,36 @@
-/* 
- * SocketServer.java
- * サーバークラス．EV3からの通信をPC側で受け取る
+/*!
+ * @file SocketServer.java
+ * @brief サーバークラス．EV3からの通信をPC側で受け取る
+ * @date 2016.01.05
+ * @author H.Shigehara
  */
-//import java.io.BufferedReader;
+//インポート
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-//import java.io.File;
-//import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+//クラス定義
+/*!
+ * @class SocketServer
+ * @brief ソケット通信のサーバー側クラス
+ */
 public class SocketServer {
 	//変数
-	static int port= 10000; //サーバー側の待受ポート番号
-	static Socket socket; //ソケット
-	static DataOutputStream dos; //データ出力ストリーム
-	static DataInputStream dis; //データ入力ストリーム
-    static InputStream Is; //入力ストリーム
-    static OutputStream Os; //出力ストリーム
-    static ServerSocket ss; //サーバーソケット
+	static int port= 10000; //!<サーバー側の待受ポート番号
+	static Socket socket; //!<ソケット
+	static DataOutputStream dos; //!<データ出力ストリーム
+	static DataInputStream dis; //!<データ入力ストリーム
+    static InputStream Is; //!<入力ストリーム
+    static OutputStream Os; //!<出力ストリーム
+    static ServerSocket ss; //!<サーバーソケット
     
 	//メソッド
-    //コネクションをはるメソッド
+    /*!
+     *　@brief コネクションをはるメソッド
+     */
     public void MakeConnection(String args[]){
     	try{
 			System.out.println("Starting Server...");
@@ -40,7 +47,9 @@ public class SocketServer {
     	}
     }
     
-    //データを送信するメソッド
+    /*!
+     * @brief データを送信するメソッド
+     */
 	public void SendData(double velocity, double yaw) {
 		try {
 			//ファイルから読み込んだデータをクライアントに送信する
@@ -53,5 +62,4 @@ public class SocketServer {
 			System.exit(-1);
 		}
 	}
-
 }

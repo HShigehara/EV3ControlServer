@@ -1,0 +1,4 @@
+<map id="RunServer" name="RunServer">
+<area shape="rect" id="node3" href="$class_read_file.html" title="ファイルを読み込むクラス " alt="" coords="227,95,300,121"/>
+<area shape="rect" id="node4" href="$class_socket_server.html" title="ソケット通信のサーバー側クラス " alt="" coords="325,95,423,121"/>
+</map>

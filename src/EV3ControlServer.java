@@ -1,13 +1,21 @@
-/*
- * EV3ControlServer.java
- * EV3を制御するクライアント(PC)側のメインクラス．
+/*!
+ * @file EV3ControlServer.java
+ * @brief EV3を制御するクライアント(PC)側のメインクラス．
+ * @date 2016.01.05
+ * @author H.Shigehara
  */
 //インポート
-import java.util.Timer;
+import java.util.Timer; //Javaのタイマー
 
 //クラスの定義
+/*!
+ * @class EV3ControlServer
+ * @brief サーバー側のメインの処理クラス
+ */
 public class EV3ControlServer{
-	//メインメソッド
+	/*!
+	 * @brief メインメソッド
+	 */
     public static void main(String[] args){ //メイン関数
     	Timer timer = new Timer(); //タイマーtimerのインスタンスを生成
 
